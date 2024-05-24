@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>BoardPage</title>
+    <link rel="stylesheet" th:href="@{/css/BoardPage.css}">
+</head>
+<body>
+<div class="container">
+    <h2 th:text="${board.title}"></h2>
+    <div>
+        <p><strong>Name : </strong><span th:text="${board.name}"></span></p>
+        <p><strong>Content : </strong><span th:text="${board.content}"></span></p>
+        <p><strong>Created At : </strong><span th:text="${#temporals.format(board.createdAt, 'yyyy/MM/dd HH:mm')}"></span></p>
+        <p th:if="${board.updatedAt != null}"><strong>Modified At : </strong><span th:text="${#temporals.format(board.updatedAt, 'yyyy/MM/dd HH:mm')}"></span></p>
+    </div>
+    <div>
+        <a th:href="@{/list}"> List </a>
+        <a th:href="@{/updateform/{id}(id=${board.id})}"> Edit </a>
+        <a th:href="@{/deleteform/{id}(id=${board.id})}"> Delete </a>
+    </div>
+</div>
+</body>
+</html>

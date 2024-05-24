@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Board_Project
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/jini
+    username: yujin
+    password: jini0327
+    driver-class-name: com.mysql.cj.jdbc.Driver
+

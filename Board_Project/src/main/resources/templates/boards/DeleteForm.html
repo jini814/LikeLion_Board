@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+    <link rel="stylesheet" th:href="@{/css/BoardForm.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Delete Board</h2>
+    <form th:action="@{/deleteform}" method="post" class="form-container">
+        <input type="hidden" name="id" th:value="${id}" />
+        <label for="password">Password :</label>
+        <input type="password" id="password" name="password" required class="input-field">
+        <div th:if="${errorMsg == true}" class="error-message">
+            <p>비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
+        </div>
+        <button type="submit" class="submit-button">Delete</button>
+    </form>
+</div>
+</body>
+</html>

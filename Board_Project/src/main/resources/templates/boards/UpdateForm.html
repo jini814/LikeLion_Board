@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify</title>
+    <link rel="stylesheet" th:href="@{/css/BoardForm.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Update Board</h2>
+    <form th:action="@{/updateform}" method="post" th:object="${board}">
+        <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{createdAt}">
+        <label for="name">Name : </label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <br>
+        <label for="title">Title : </label>
+        <input type="text" id="title" th:field="*{title}" required />
+        <br>
+        <label for="content">Content : </label>
+        <textarea id="content" th:field="*{content}" required></textarea>
+        <br>
+        <label for="password">Password : </label>
+        <input type="password" id="password" th:field="*{password}" required />
+        <br>
+        <div th:if="${errorMsg == true}" class="error-message">
+            <p>비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
+        </div>
+        <button type="submit" value="게시글수정">Modify</button>
+    </form>
+</div>
+</body>
+</html>
