@@ -7,26 +7,26 @@
 </head>
 <body>
 <div class="container">
-    <h2>Update Board</h2>
+    <h2>게시글 수정</h2>
     <form th:action="@{/updateform}" method="post" th:object="${board}">
         <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{createdAt}">
-        <label for="name">Name : </label>
+        <label for="name">작성자 닉네임 : </label>
         <input type="text" id="name" th:field="*{name}" required />
         <br>
-        <label for="title">Title : </label>
+        <label for="title">제목 : </label>
         <input type="text" id="title" th:field="*{title}" required />
         <br>
-        <label for="content">Content : </label>
+        <label for="content">내용 : </label>
         <textarea id="content" th:field="*{content}" required></textarea>
         <br>
-        <label for="password">Password : </label>
+        <label for="password">비밀번호 : </label>
         <input type="password" id="password" th:field="*{password}" required />
         <br>
         <div th:if="${errorMsg == true}" class="error-message">
             <p>비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p>
         </div>
-        <button type="submit" value="게시글수정">Modify</button>
+        <button type="submit" class="createBtn" value="게시글수정">완료</button>
     </form>
 </div>
 </body>

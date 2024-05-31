@@ -6,37 +6,48 @@
     <link rel="stylesheet" th:href="@{/css/BoardList.css}">
 </head>
 <body>
-<h1>BoardList</h1>
+<h1 class="pageTitle">게시글 목록</h1>
+
+<!-- 정렬 기준을 선택할 수 있는 버튼들 -->
+<div>
+    <a th:href="@{/list(sort='createdAt')}" class="sortBtn" th:class="${sort == 'createdAt' ? 'active' : ''}">최신순</a>
+    <a th:href="@{/list(sort='readCnt')}" class="sortBtn" th:class="${sort == 'readCnt' ? 'active' : ''}">조회수 순</a>
+    <a th:href="@{/list(sort='likeCnt')}" class="sortBtn" th:class="${sort == 'likeCnt' ? 'active' : ''}">좋아요 순</a>
+</div>
+
 <table th:if="${!boards.empty}">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Title</th>
-        <th>Created At</th>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회수</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="board : ${boards}">
         <td th:text="${board.id}"></td>
-        <td th:text="${board.name}"></td>
         <td>
             <a th:href="@{/view/{id}(id=${board.id})}" th:text="${board.title}"></a>
         </td>
+        <td th:text="${board.name}"></td>
         <td th:text="${#temporals.format(board.createdAt, 'yyyy/MM/dd')}"></td>
+        <td th:text="${board.readCnt}"></td>
     </tr>
     </tbody>
 </table>
+
+<a th:href="@{/writeform}" class="createBtn">글쓰기</a>
+
 <div th:if="${boards.totalPages > 1}">
     <ul>
         <li th:each="i : ${#numbers.sequence(1, boards.totalPages)}"
-            th:class="${currentPage == i} ? 'active'">
-            <a th:href="@{/list(page=${i})}" th:text="${i}"></a>
+            th:classappend="${currentPage == i} ? 'active'">
+            <!-- 페이지 링크에 정렬 정보 추가 -->
+            <a th:href="@{/list(page=${i}, size=${size}, sort=${sort})}" th:text="${i}"></a>
         </li>
     </ul>
 </div>
-
-<a th:href="@{/writeform}" class="write-link">글쓰기</a>
-
 </body>
 </html>

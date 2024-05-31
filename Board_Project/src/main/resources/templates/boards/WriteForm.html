@@ -7,21 +7,25 @@
 </head>
 <body>
 <div class="container">
-    <h2>Create a New Board</h2>
+    <h2>게시글 작성</h2>
     <form th:action="@{/writeform}" method="post" th:object="${board}">
-        <label for="name">Name : </label>
-        <input type="text" id="name" th:field="*{name}" required />
-        <br>
-        <label for="title">Title : </label>
-        <input type="text" id="title" th:field="*{title}" required />
-        <br>
-        <label for="content">Content : </label>
-        <textarea id="content" th:field="*{content}" required></textarea>
-        <br>
-        <label for="password">Password : </label>
-        <input type="password" id="password" th:field="*{password}" required />
-        <br>
-        <button type="submit" value="게시글작성">Create</button>
+        <div class="form-group">
+            <label for="name">작성자 닉네임 :</label>
+            <input type="text" id="name" th:field="*{name}" required>
+        </div>
+        <div class="form-group">
+            <label for="title">제목 :</label>
+            <input type="text" id="title" th:field="*{title}" required>
+        </div>
+        <div class="form-group">
+            <label for="content">내용 :</label>
+            <textarea id="content" th:field="*{content}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="password">비밀번호 :</label>
+            <input type="password" id="password" th:field="*{password}" required>
+        </div>
+        <button type="submit" class="createBtn">완료</button>
     </form>
 </div>
 </body>

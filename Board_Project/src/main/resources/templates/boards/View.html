@@ -7,17 +7,30 @@
 </head>
 <body>
 <div class="container">
-    <h2 th:text="${board.title}"></h2>
-    <div>
-        <p><strong>Name : </strong><span th:text="${board.name}"></span></p>
-        <p><strong>Content : </strong><span th:text="${board.content}"></span></p>
-        <p><strong>Created At : </strong><span th:text="${#temporals.format(board.createdAt, 'yyyy/MM/dd HH:mm')}"></span></p>
-        <p th:if="${board.updatedAt != null}"><strong>Modified At : </strong><span th:text="${#temporals.format(board.updatedAt, 'yyyy/MM/dd HH:mm')}"></span></p>
+    <div class="header">
+        <h2 th:text="${board.title}"></h2>
+        <a th:href="@{/list}" class="backBtn">뒤로가기</a>
     </div>
-    <div>
-        <a th:href="@{/list}"> List </a>
-        <a th:href="@{/updateform/{id}(id=${board.id})}"> Edit </a>
-        <a th:href="@{/deleteform/{id}(id=${board.id})}"> Delete </a>
+    <hr>
+    <div class="content">
+        <div class="dateContent">
+            <p><strong>작성자 :</strong> <span th:text="${board.name}"></span></p>
+            <p><strong>작성일 :</strong> <span th:text="${#temporals.format(board.createdAt, 'yyyy.MM.dd HH:mm')}"></span></p>
+            <p th:if="${board.updatedAt != null}"><strong>수정일 :</strong> <span th:text="${#temporals.format(board.updatedAt, 'yyyy.MM.dd HH:mm')}"></span></p>
+        </div>
+        <p class="contentText"><span th:text="${board.content}"></span></p>
+        <div class="cntContent">
+            <p><strong>조회수 :</strong> <span th:text="${board.readCnt}"></span></p>
+            <p><strong>좋아요 수 :</strong> <span id="likeCnt" th:text="${board.likeCnt}"></span></p>
+        </div>
+    </div>
+    <div class="buttons">
+        <!-- 좋아요 폼 -->
+        <form th:action="@{'/like/' + ${board.id}}" method="post">
+            <button type="submit" class="likeBtn">좋아요</button>
+        </form>
+        <a th:href="@{/updateform/{id}(id=${board.id})}" class="editBtn">수정</a>
+        <a th:href="@{/deleteform/{id}(id=${board.id})}" class="deleteBtn">삭제</a>
     </div>
 </div>
 </body>

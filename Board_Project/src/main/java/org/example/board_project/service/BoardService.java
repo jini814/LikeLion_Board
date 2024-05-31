@@ -25,12 +25,29 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Page<Board> findAllBoards(Pageable pageable){
         Pageable sortedByDescId =  PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
                 Sort.by(Sort.Direction.DESC,"id"));
-
         return boardRepository.findAll(sortedByDescId);
     }
+
+    @Transactional(readOnly = true)
+//조회수 순
+    public Page<Board> findAllBoardsByReadCnt(Pageable pageable){
+        Pageable sortedByDescreadcnt =  PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC,"readCnt"));
+        return boardRepository.findAll(sortedByDescreadcnt);
+    }
+
+    @Transactional(readOnly = true)
+//좋아요 순
+    public Page<Board> findAllBoardsByLikeCnt(Pageable pageable){
+        Pageable sortedByDesclikecnt =  PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC,"likeCnt"));
+        return boardRepository.findAll(sortedByDesclikecnt);
+    }
+
 
     //글 단일 조회
     @Transactional(readOnly = true)
@@ -68,5 +85,21 @@ public class BoardService {
         } else {
             return false;
         }
+    }
+
+    // 조회수 증가
+    @Transactional
+    public void incrementReadCount(Long id) {
+        Board board = boardRepository.findById(id).orElse(null);
+        board.setReadCnt(board.getReadCnt() + 1);
+        boardRepository.save(board);
+    }
+
+    // 좋아요 수 증가
+    @Transactional
+    public void incrementLikeCount(Long id) {
+        Board board = boardRepository.findById(id).orElse(null);
+        board.setLikeCnt(board.getLikeCnt() + 1);
+        boardRepository.save(board);
     }
 }

@@ -2,6 +2,7 @@ package org.example.board_project.domain;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 
 import java.time.LocalDateTime;
 
@@ -21,4 +22,10 @@ public class Board {
     private LocalDateTime createdAt;  // 등록일
     private LocalDateTime updatedAt;  // 수정일
 
+    // 추가된 기능
+    @Column(value = "likecnt")
+    private int likeCnt;
+
+    @Column(value = "readcnt")
+    private int readCnt;
 }

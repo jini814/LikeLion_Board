@@ -1,55 +1,51 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-
 .container {
-    width: 400px;
-    margin: 0 auto;
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    border: 1px solid #c5c5c5;
-}
-
-form {
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
+    background-color: #f2f2f2;
     border-radius: 10px;
 }
 
 h2 {
-    padding: 20px;
-    margin: 40px 0 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-bottom: 10px;
+    font-weight: bold;
 }
 
 input[type="text"],
-textarea,
-input[type="password"] {
+input[type="password"],
+textarea {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
 textarea {
-    min-height: 280px;
+    height: 250px; /* 본문 입력 박스 높이 설정 */
 }
 
-button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
+button.createBtn {
+    display: block;
+    background-color: #0a1f2d;
+    margin: 0 auto; /* 가운데 정렬 */
+    color: #ffffff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    text-align: center;
 }
 
-button[type="submit"]:hover {
-    background-color: #45a049;
+button.createBtn:hover {
+    background-color: #0f3550;
 }
